@@ -2,10 +2,6 @@
 
 using namespace ionizing;
 
-IOFormat CommaInitFmt{StreamPrecision, DontAlignCols, ", ", ", ", "", "", " << ", ";"};
-IOFormat CleanFmt{4, 0, ", ", "\n", "[", "]"};
-IOFormat OctaveFmt{StreamPrecision, 0, ", ", ";\n", "", "", "[", "]"};
-IOFormat HeavyFmt{FullPrecision, 0, ", ", ";\n", "[", "]", "[", "]"};
 std::string sep("\n-----------------------------------------\n");
 
 void test(const int dim1, const int dim2, const int dim3) {

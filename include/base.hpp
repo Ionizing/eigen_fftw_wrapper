@@ -54,6 +54,10 @@ namespace ionizing {
   template <typename T>
     using RowVecT = Matrix<T,       1, Dynamic, RowMajor>;
   
+static IOFormat CommaInitFmt{StreamPrecision, DontAlignCols, ", ", ", ", "", "", " << ", ";"};
+static IOFormat CleanFmt{4, 0, ", ", "\n", "[", "]"};
+static IOFormat OctaveFmt{StreamPrecision, 0, ", ", ";\n", "", "", "[", "]"};
+static IOFormat HeavyFmt{FullPrecision, 0, ", ", ";\n", "[", "]", "[", "]"};
 }
 
 #endif // BASE_H

@@ -19,7 +19,7 @@ void test1() {
     << std::endl << std::endl;
 
   Veccd vec_ifft = ifft_1d(vec_fft);
-  std::cout << "ifft_1d(vec_fft) = \n" << vec_ifft.format(HeavyFmt)
+  std::cout << "ifft_1d(vec_fft) = \n" << vec_ifft.real().format(HeavyFmt)
     << std::endl << std::endl;
 
   Veccd vec_rfft = rfft_1d(vec);
@@ -48,7 +48,7 @@ void test2() {
     << std::endl << std::endl;
 
   Veccd vec_ifft = ifft_1d(vec_fft);
-  std::cout << "ifft_1d(vec_fft) = \n" << vec_ifft.format(HeavyFmt)
+  std::cout << "ifft_1d(vec_fft) = \n" << vec_ifft.real().format(HeavyFmt)
     << std::endl << std::endl;
 
   Veccd vec_rfft = rfft_1d(vec);

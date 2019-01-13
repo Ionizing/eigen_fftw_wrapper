@@ -6,9 +6,9 @@ void test(const int arraysize) {
   std::cout << "Initial ArraySize = " << arraysize << std::endl;
   Vecd vec{arraysize};
   vec.setRandom();
-  std::cout << "Original array is \n" << vec << std::endl;
+  std::cout << "Original array is \n" << vec.format(HeavyFmt) << std::endl;
   Veccd vec_rfft = rfft_1d(vec);
-  std::cout << "rfft of original array is \n" << vec_rfft << std::endl;
+  std::cout << "rfft of original array is \n" << vec_rfft.format(HeavyFmt) << std::endl;
 
   std::cout << "\n\n\n" << std::endl;
 }
@@ -17,11 +17,11 @@ void test_2d(const int cols) {
   std::cout << "Initial Array cols = " << cols << std::endl;
   Matd mat{6, cols};
   mat.setRandom();
-  std::cout << "Original matrix is \n" << mat << std::endl;
+  std::cout << "Original matrix is \n" << mat.format(HeavyFmt) << std::endl;
   Matcd mat_fft  = fft_2d(mat);
-  std::cout << "fft_2d of original matrix is \n" << mat_fft << std::endl;
+  std::cout << "fft_2d of original matrix is \n" << mat_fft.format(HeavyFmt) << std::endl;
   Matcd mat_rfft = rfft_2d(mat);
-  std::cout << "rfft_2d of original matrix is \n" << mat_rfft << std::endl;
+  std::cout << "rfft_2d of original matrix is \n" << mat_rfft.format(HeavyFmt) << std::endl;
   std::cout << "\n\n\n" << std::endl;
 }
 

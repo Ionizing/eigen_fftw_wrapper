@@ -3,17 +3,17 @@
 using namespace ionizing;
 
 void test(const Matd mat) {
-  std::cout << "Original Matrix is \n" << mat << std::endl;
+  std::cout << "Original Matrix is \n" << mat.format(HeavyFmt) << std::endl;
   Matcd mat_fft = fft_2d(mat);
-  std::cout << "fft of mat is \n" << mat_fft << std::endl;
+  std::cout << "fft of mat is \n" << mat_fft.format(HeavyFmt) << std::endl;
   Matcd mat_rfft = rfft_2d(mat);
-  std::cout << "rfft of mat is \n" << mat_rfft << std::endl;
+  std::cout << "rfft of mat is \n" << mat_rfft.format(HeavyFmt) << std::endl;
 
   Matcd mat_ifft = ifft_2d(mat_fft);
-  std::cout << "ifft of mat_fft is \n" << mat_ifft << std::endl;
+  std::cout << "ifft of mat_fft is \n" << mat_ifft.real().format(HeavyFmt) << std::endl;
 
   Matd mat_irfft = irfft_2d(mat_rfft);
-  std::cout << "irfft of mat_rfft is \n" << mat_irfft << std::endl;
+  std::cout << "irfft of mat_rfft is \n" << mat_irfft.format(HeavyFmt) << std::endl;
 }
 
 int main(int argc, char* argv[]) {
