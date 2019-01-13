@@ -9,7 +9,7 @@
 
 Numpy results
 
-# Achieved
+# Finished:
 - 1D/2D/3D Complex FFT(forward & backward);
 - 1D/2D/3D Real to Complex FFT (fftw_forward);
 - 1D Complex to Real FFT (fftw_backward).
