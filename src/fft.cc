@@ -297,9 +297,21 @@ namespace ionizing {
         << "size of input cub is 0" << std::endl;
       std::abort();
     }
-    Cubd out(cub.dimension(0), cub.dimension(1), cub.dimension(2)*2 - 2);
+
+/*
+ * if in cube is [m x n x q]
+ *  tmp_last_elem = cube[0, 0, -1].imag()
+ *  this variable can be used to determine the
+ *  if the last dimension of original cube is
+ *  odd or even.
+ */
+    double tmp_last_elem = cub(0, 0, cub.dimension(2) - 1).imag();
+    int dim3 = fabs(tmp_last_elem) > 1e-5 ?
+        cub.dimension(2) * 2 - 1 :
+        cub.dimension(2) * 2 - 2 ;
+    Cubd out(cub.dimension(0), cub.dimension(1), dim3);
     auto plan = fftw_plan_dft_c2r_3d(
-        cub.dimension(0), cub.dimension(1), cub.dimension(2), 
+        out.dimension(0), out.dimension(1), out.dimension(2), 
         (fftw_complex *)cub.data(), (double *)out.data(),
         FFTW_ESTIMATE);
     fftw_execute(plan);
