@@ -12,7 +12,7 @@ Numpy results
 # Finished:
 - 1D/2D/3D Complex FFT(forward & backward);
 - 1D/2D/3D Real to Complex FFT (fftw_forward);
-- 1D/2D Complex to Real FFT (fftw_backward).
+- 1D/2D/3D Complex to Real FFT (fftw_backward).
 
 # Tips:
 
@@ -22,5 +22,5 @@ a real number (i.e. Im(num) == 0)
 
 # TODO
 
-- Fix 3D Complex to Real FFT (fftw_backward) issues.
+- ~~Fix 3D Complex to Real FFT (fftw_backward) issues.~~
 
