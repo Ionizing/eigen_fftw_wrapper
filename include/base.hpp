@@ -39,21 +39,21 @@ namespace ionizing {
 // global type aliasing
   using Vecd   = VectorXd;
   using Veccd  = VectorXcd;
-  using Matd   = Matrix<              double, Dynamic, Dynamic>;
-  using Matcd  = Matrix<std::complex<double>, Dynamic, Dynamic>;
+  using Matd   = Matrix<              double, Dynamic, Dynamic, RowMajor>;
+  using Matcd  = Matrix<std::complex<double>, Dynamic, Dynamic, RowMajor>;
   using Cubd   = Tensor<              double,                3, RowMajor>;
   using Cubcd  = Tensor<std::complex<double>,                3, RowMajor>;
-  using Mat33d = Matrix<double,                     3,       3>;
-  using MatX3d = Matrix<double,               Dynamic,       3>;
+  using Mat33d = Matrix<double,                     3,       3, RowMajor>;
+  using MatX3d = Matrix<double,               Dynamic,       3, RowMajor>;
 
   template <typename T>
-    using MatT    = Matrix<T, Dynamic, Dynamic>;
+    using MatT    = Matrix<T, Dynamic, Dynamic, RowMajor>;
 
   template <typename T>
-    using ColVecT = Matrix<T, Dynamic,       1>;
+    using ColVecT = Matrix<T, Dynamic,       1, RowMajor>;
 
   template <typename T>
-    using RowVecT = Matrix<T,       1, Dynamic>;
+    using RowVecT = Matrix<T,       1, Dynamic, RowMajor>;
   
 }
 

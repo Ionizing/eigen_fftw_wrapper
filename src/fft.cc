@@ -253,7 +253,7 @@ namespace ionizing {
       std::abort();
     }
 
-    int cols = fabs(mat.rightCols<1>().tail<1>()(0).imag()) > 1e-5 ?
+    int cols = fabs(mat.rightCols<1>().head<1>()(0).imag()) > 1e-5 ?
       mat.cols() * 2 - 1 : mat.cols() * 2 - 2;
     Matd out(mat.rows(), cols);
     auto plan = fftw_plan_dft_c2r_2d(out.rows(), out.cols(),
