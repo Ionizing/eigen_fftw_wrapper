@@ -4,6 +4,63 @@
   "arguments": [
    "g++", 
    "-o", 
+   "unit_test/test_3d.out", 
+   "unit_test/test_3d.cc", 
+   "./src/fft.o", 
+   "-I/usr/local/include/eigen3", 
+   "-I./include", 
+   "-g", 
+   "-Wall", 
+   "-std=c++11", 
+   "-fno-omit-frame-pointer", 
+   "-fsanitize=address", 
+   "-lfftw3"
+  ], 
+  "file": "unit_test/test_3d.cc"
+ }, 
+ {
+  "directory": "/Users/ionizing/Documents/github/eigen_fftw_wrapper", 
+  "arguments": [
+   "g++", 
+   "-o", 
+   "unit_test/test_odd_even.out", 
+   "unit_test/test_odd_even.cc", 
+   "./src/fft.o", 
+   "-I/usr/local/include/eigen3", 
+   "-I./include", 
+   "-g", 
+   "-Wall", 
+   "-std=c++11", 
+   "-fno-omit-frame-pointer", 
+   "-fsanitize=address", 
+   "-lfftw3"
+  ], 
+  "file": "unit_test/test_odd_even.cc"
+ }, 
+ {
+  "directory": "/Users/ionizing/Documents/github/eigen_fftw_wrapper", 
+  "arguments": [
+   "g++", 
+   "-o", 
+   "unit_test/test_1d.out", 
+   "unit_test/test_1d.cc", 
+   "./src/fft.o", 
+   "-I/usr/local/include/eigen3", 
+   "-I./include", 
+   "-g", 
+   "-Wall", 
+   "-std=c++11", 
+   "-fno-omit-frame-pointer", 
+   "-fsanitize=address", 
+   "-lfftw3"
+  ], 
+  "file": "unit_test/test_1d.cc"
+ }, 
+ {
+  "directory": "/Users/ionizing/Documents/github/eigen_fftw_wrapper", 
+  "arguments": [
+   "g++", 
+   "-o", 
    "src/fft.o", 
    "-c", 
    "src/fft.cc", 
@@ -22,17 +79,18 @@
   "arguments": [
    "g++", 
    "-o", 
-   "src/main.o", 
-   "-c", 
-   "src/main.cc", 
+   "unit_test/test_2d.out", 
+   "unit_test/test_2d.cc", 
+   "./src/fft.o", 
    "-I/usr/local/include/eigen3", 
    "-I./include", 
    "-g", 
    "-Wall", 
    "-std=c++11", 
    "-fno-omit-frame-pointer", 
-   "-fsanitize=address"
+   "-fsanitize=address", 
+   "-lfftw3"
   ], 
-  "file": "src/main.cc"
+  "file": "unit_test/test_2d.cc"
  }
 ]

@@ -10,6 +10,7 @@
 #include <tuple>
 #include <iomanip>
 #include <vector>
+#include <cmath>
 
 #include <fftw3.h>
 

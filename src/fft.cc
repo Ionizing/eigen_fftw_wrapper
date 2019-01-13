@@ -13,6 +13,11 @@ namespace ionizing {
    */
 
   Veccd fft_1d(const Veccd& vec){
+    if (vec.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input array is 0" << std::endl;
+      std::abort();
+    }
     Veccd out(vec.size());
     auto plan = fftw_plan_dft_1d(vec.size(),
         (fftw_complex *)vec.data(), (fftw_complex *)out.data(),
@@ -29,6 +34,11 @@ namespace ionizing {
   }
 
   Veccd ifft_1d(const Veccd& vec) {
+    if (vec.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input array is 0" << std::endl;
+      std::abort();
+    }
     Veccd out(vec.size());
     auto plan = fftw_plan_dft_1d(vec.size(),
         (fftw_complex *)vec.data(), (fftw_complex *)out.data(),
@@ -47,6 +57,11 @@ namespace ionizing {
 
 
   Matcd  fft_2d(const Matcd& mat) {
+    if (mat.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input matrix is 0" << std::endl;
+      std::abort();
+    }
     Matcd out(mat.rows(), mat.cols());
     auto plan = fftw_plan_dft_2d(mat.rows(), mat.cols(),
         (fftw_complex *)mat.data(), (fftw_complex *)out.data(),
@@ -65,6 +80,11 @@ namespace ionizing {
   }
   
   Matcd ifft_2d(const Matcd& mat) {
+    if (mat.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input matrix is 0" << std::endl;
+      std::abort();
+    }
     Matcd out(mat.rows(), mat.cols());
     auto plan = fftw_plan_dft_2d(mat.rows(), mat.cols(),
         (fftw_complex *)mat.data(), (fftw_complex *)out.data(),
@@ -82,6 +102,12 @@ namespace ionizing {
   }
 
   Cubcd  fft_3d(const Cubcd& cub) {
+    if (cub.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input cub is 0" << std::endl;
+      std::abort();
+    }
+
     Cubcd out(cub.dimension(0), cub.dimension(1), cub.dimension(2));
     auto plan = fftw_plan_dft_3d(
         cub.dimension(0), cub.dimension(1), cub.dimension(2), 
@@ -99,6 +125,11 @@ namespace ionizing {
   }
 
   Cubcd ifft_3d(const Cubcd& cub) {
+    if (cub.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input cub is 0" << std::endl;
+      std::abort();
+    }
     Cubcd out(cub.dimension(0), cub.dimension(1), cub.dimension(2));
     auto plan = fftw_plan_dft_3d(
         cub.dimension(0), cub.dimension(1), cub.dimension(2), 
@@ -145,6 +176,12 @@ namespace ionizing {
  * out array shape: m/2 + 1
  */
   Veccd rfft_1d(const Vecd& vec){
+    if (vec.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __FUNCTION__ 
+        << ": " << "size of input vector is 0" << std::endl;
+      std::abort();
+    }
+
     Veccd out(vec.size() / 2 + 1);
     auto plan = fftw_plan_dft_r2c_1d(vec.size(),
         (double *)vec.data(), (fftw_complex *)out.data(),
@@ -160,14 +197,18 @@ namespace ionizing {
  *  in array shape:  m
  * out array shape:  (m-1) * 2
  */
-  Vecd irfft_1d(Vecd& vec) {
-    if (vec.size() == 1) {
+  Vecd irfft_1d(Veccd vec) {
+    if (vec.size() == 0) {
       std::cerr << std::endl << __FILE__ << ":" << __FUNCTION__ 
-        << ": " << "size of input vector is 1" << std::endl;
+        << ": " << "size of input vector is 0" << std::endl;
       std::abort();
     }
-    Vecd out(vec.size() * 2 - 2);
-    auto plan = fftw_plan_dft_c2r_1d(vec.size(),
+    // if original vector length is odd, size = in.size() * 2 - 1,
+    //                             else, size = in.size() * 2 - 2;
+    int size = fabs(vec.tail<1>()(0).imag()) > 1e-5 ?
+      vec.size() * 2 - 1 : vec.size() * 2 - 2 ;
+    Vecd out(size);
+    auto plan = fftw_plan_dft_c2r_1d(out.size(),
         (fftw_complex *)vec.data(), (double *)out.data(),
         FFTW_ESTIMATE);
     fftw_execute(plan);
@@ -184,6 +225,12 @@ namespace ionizing {
  * out array shape:  m x (n/2 + 1);
  */
   Matcd  rfft_2d(const Matd& mat) {
+    if (mat.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
+        << "size of input matrix is 0" << std::endl;
+      std::abort();
+    }
+
     Matcd out(mat.rows(), mat.cols() / 2 + 1);
     auto plan = fftw_plan_dft_r2c_2d(mat.rows(), mat.cols(),
         (double *)mat.data(), (fftw_complex *)out.data(),
@@ -199,14 +246,17 @@ namespace ionizing {
  *  in array shape: m x n
  * out array shape: m x ((n-1) * 2)
  */
-  Matd irfft_2d(Matcd& mat) {
-    if (mat.cols() == 1) {
+  Matd irfft_2d(Matcd mat) {
+    if (mat.size() == 0) {
       std::cerr << std::endl << __FILE__ << ":" << __LINE__ << ": "
-        << "columns of input matrix is 1" << std::endl;
+        << "size of input matrix is 0" << std::endl;
       std::abort();
     }
-    Matd out(mat.rows(), mat.cols()*2 - 2);
-    auto plan = fftw_plan_dft_c2r_2d(mat.rows(), mat.cols(),
+
+    int cols = fabs(mat.rightCols<1>().tail<1>()(0).imag()) > 1e-5 ?
+      mat.cols() * 2 - 1 : mat.cols() * 2 - 2;
+    Matd out(mat.rows(), cols);
+    auto plan = fftw_plan_dft_c2r_2d(out.rows(), out.cols(),
         (fftw_complex *)mat.data(), (double *)out.data(),
         FFTW_ESTIMATE);
     fftw_execute(plan);
@@ -221,6 +271,12 @@ namespace ionizing {
  * out array shape:  m x n x (q/2 + 1);
  */
   Cubcd  rfft_3d(const Cubd& cub) {
+    if (cub.size() == 0) {
+      std::cerr << std::endl << __FILE__ << ":" << __FUNCTION__ << ": "
+        << "size of input cub is 0" << std::endl;
+      std::abort();
+    }
+
     Cubcd out(cub.dimension(0), cub.dimension(1), cub.dimension(2) / 2 + 1);
     auto plan = fftw_plan_dft_r2c_3d(
         cub.dimension(0), cub.dimension(1), cub.dimension(2), 
@@ -235,10 +291,10 @@ namespace ionizing {
  *  in array shape: m x n x q
  * out array shape: m x n x ((q-1) * 2)
  */
-  Cubd irfft_3d(Cubcd& cub) {
-    if (cub.dimension(2) == 1) {
+  Cubd irfft_3d(Cubcd cub) {
+    if (cub.size() == 0) {
       std::cerr << std::endl << __FILE__ << ":" << __FUNCTION__ << ": "
-        << "third dimension of input cub is 1" << std::endl;
+        << "size of input cub is 0" << std::endl;
       std::abort();
     }
     Cubd out(cub.dimension(0), cub.dimension(1), cub.dimension(2)*2 - 2);

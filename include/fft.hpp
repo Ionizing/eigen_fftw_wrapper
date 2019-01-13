@@ -103,13 +103,13 @@ namespace ionizing {
   Cubcd ifft_3d(const  Cubd& cub);
 
   Veccd  rfft_1d(const  Vecd& vec);
-  Vecd  irfft_1d(       Veccd& vec);
+  Vecd  irfft_1d(       Veccd vec);
            
   Matcd  rfft_2d(const  Matd& mat);
-  Matd  irfft_2d(       Matcd& mat);
+  Matd  irfft_2d(       Matcd mat);
            
   Cubcd  rfft_3d(const  Cubd& cub);
-  Cubd  irfft_3d(       Cubcd& cub);
+  Cubd  irfft_3d(       Cubcd cub);
 }
 
 #endif // FFT_H

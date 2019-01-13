@@ -6,17 +6,21 @@ LFLAGS := -lfftw3
 
 SOURCE := $(wildcard ./src/*.cc)
 OBJS := $(patsubst %.cc, %.o, $(SOURCE))
+TEST_SRC := $(wildcard ./unit_test/*.cc)
+TEST_EXE := $(patsubst %.cc, %.out, $(TEST_SRC))
 
 .PHONY: all clean
 .SECONDARY: $(OBJS)
 
-all: main.out
+all: $(TEST_EXE)
 
-main.out: $(OBJS)
-	$(CC) -o $@ \
-		$(OBJS) \
+./unit_test/%.out: ./unit_test/%.cc  $(OBJS)
+	$(CC) -o $@ $< $(OBJS) \
+		$(INC) \
 		$(FLAGS) \
 		$(LFLAGS)
+	$@ > $@.log
+	cat $@.log
 
 ./src/%.o: ./src/%.cc ./include/*.hpp
 	$(CC) -o $@ -c $< \
@@ -24,4 +28,4 @@ main.out: $(OBJS)
 		$(FLAGS)
 
 clean:
-	@rm -rf $(OBJS) ./*.out*
+	@rm -rf $(OBJS) ./unit_test/*.out* ./unit_test/*.log
