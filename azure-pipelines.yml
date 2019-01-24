@@ -9,6 +9,12 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+strategy:
+  matrix:           # 配置 travis-ci 系统变量
+    include:
+      - os: linux   # 指定构建环境的系统类型
+      - compiler: gcc  # 指定编译器
+
 steps:
 - script: |
     make
