@@ -12,7 +12,6 @@ pool:
 
 steps:
 - script: |
-    sudo apt install libfftw*
-    sudo apt install libeigen*
+    sudo apt install libfftw3* libeigen3-dev
     make
   displayName: 'make'
