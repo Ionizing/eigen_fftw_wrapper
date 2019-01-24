@@ -1,4 +1,4 @@
-INC := -I/usr/local/include/eigen3
+INC := -I/usr/local/include/eigen3 -I/usr/include/eigen3
 INC += -I./include
 CC := g++
 FLAGS := -g -Wall -std=c++11 -fno-omit-frame-pointer -fsanitize=address
