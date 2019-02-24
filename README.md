@@ -18,9 +18,8 @@ Numpy results
 
 - if an array have even elements, the `fft`/`rfft` of it ends with
 a real number (i.e. Im(num) == 0)
-- DO NOT USE `EIGEN_DEFAULT_TO_ROW_MAJOR` macro, it does nothing!
+- ~~DO NOT USE `EIGEN_DEFAULT_TO_ROW_MAJOR` macro, it does nothing!~~ You must `#define EIGEN_DEFAULT_TO_ROW_MAJOR` before `#include <Eigen>`
 
 # TODO
 
-- ~~Fix 3D Complex to Real FFT (fftw_backward) issues.~~
-
+- [x] Fix 3D Complex to Real FFT (fftw_backward) issues.
